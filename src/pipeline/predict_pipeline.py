@@ -28,19 +28,19 @@ class PredictPipeline:
 
 class CustomData:
     def __init__(self,
-                 province_name:str,
-                 nama_komoditas:str,
-                 Tn:float,
-                 Tx:float,
-                 Tavg:float,
-                 RH_avg:float,
-                 RR:float,
-                 ss:float,
-                 ff_x:float,
-                 ddd_x:float,
-                 ff_avg:float,
-                 luar_wilayah_hektar:float,
-                 tahun:float):
+                 province_name,
+                 nama_komoditas,
+                 Tn,
+                 Tx,
+                 Tavg,
+                 RH_avg,
+                 RR,
+                 ss,
+                 ff_x,
+                 ddd_x,
+                 ff_avg,
+                 luar_wilayah_hektar,
+                 tahun):
         
         self.province_name=province_name
         self.nama_komoditas=nama_komoditas
