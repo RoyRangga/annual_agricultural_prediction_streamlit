@@ -3,12 +3,16 @@ import numpy as np
 import streamlit as st
 from src.pipeline.predict_pipeline import PredictPipeline,CustomData
 from sklearn.preprocessing import StandardScaler
-import base64
+import pickle
+import dill
 
 
 df=pd.read_csv('data/final_data.csv')
 title='Agriculture yields Prediction'
 
+def load_object(file_path):
+    with open(file_path, 'rb') as file_obj:
+        return pickle.load(file_obj)
 
 def main():
     st.set_page_config(layout='centered',page_title=title)
@@ -52,10 +56,16 @@ def main():
         predict_df=data.get_data_as_data_frame()
         print(predict_df)
 
-        predict_pipeline=PredictPipeline()
-        results=predict_pipeline.predict(predict_df)
+        model_path='artifacts/model.pkl'
+        preprocessor_path='artifacts/preprocessor.pkl'
 
-        st.success("The yield of commodity is : " + str(results[0]))
+        model=load_object(model_path)
+        preprocessor=load_object(preprocessor_path)
+
+        data_scaled=preprocessor.transform(predict_df)
+        preds=model.predict(data_scaled)
+
+        st.success("The yield of commodity is : " + str(preds[0]))
 
 if __name__=="__main__":
     main()
