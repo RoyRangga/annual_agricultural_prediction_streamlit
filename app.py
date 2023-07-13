@@ -3,7 +3,6 @@ import numpy as np
 import streamlit as st
 from src.pipeline.predict_pipeline import PredictPipeline,CustomData
 from sklearn.preprocessing import StandardScaler
-import base64
 
 
 df=pd.read_csv('data/final_data.csv')
